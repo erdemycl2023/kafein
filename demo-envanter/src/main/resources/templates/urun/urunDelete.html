@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+<meta charset="utf-8">
+
+
+<th:block layout:fragment="content">
+	<div class="container-fluid mainT">
+		<div class="header-body">
+
+			<span class="text-white">&nbsp;</span>
+			<form action="add" method = "post">
+
+				<div>
+					<div class="alert alert-success" role="alert">
+	    				<strong>İşlem Başarılı!</strong> Ürünü Silindi. 
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</th:block>
+

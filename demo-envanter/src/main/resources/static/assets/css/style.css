@@ -1,0 +1,51 @@
+.record-count {
+	color: red; 
+	font-size: 0.8rem;
+	font-weight: bold;
+}
+
+    .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+	.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+	.autocomplete-selected { background: #F0F0F0; }
+	.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+	.autocomplete-group { padding: 2px 5px; }
+	.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+
+.form-control {
+	height: 0%;
+	padding: 4%;
+	padding-top: 1%;
+}
+
+.sort-button {
+	
+}
+
+tr:hover {
+	background-color: rgb(221, 223, 223);
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.close{
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}

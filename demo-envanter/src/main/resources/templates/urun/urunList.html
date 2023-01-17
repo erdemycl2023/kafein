@@ -1,0 +1,103 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+<meta charset="utf-8">
+
+
+
+
+<!-- ARAMA KODU -->
+
+<th:block layout:fragment="search">
+	<div class="container-fluid mainT">
+		<div class="header-body">
+			<span class="text-white">Arama</span>
+
+
+			<input type="hidden" id="search_type">
+			<input type="hidden" id="search_input">
+
+			<div class="row">
+				<div class="col-xl-10 col-lg-6">
+					<div class="card card-stats mb-4 mb-xl-0">
+						<div class="card-body" id="searchDiv">
+							<div class="row">
+
+								<div class="col">
+									<div>
+										<span class="text-muted" style="white-space: nowrap;">Ürün adı</span>
+										<input style="padding-top: 2%;padding-bottom:  2.5%;" class="form-control"
+											type="text" id="search_text" th:value="${text}">
+									</div>
+								</div>
+							</div>
+							<div class="row text-center">
+								<div class="col">
+									<button onclick="search();" id="searchButtonOfSearchDiv"
+										class="btn btn-primary spin" style="margin-top: 10px;">Ara</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+
+
+
+
+<th:block layout:fragment="content">
+	<div id="rest"></div>
+	<div class="mainT">
+		<div class="card-header border-0">
+			<div class="row" id="butjs">
+				<div class="col" style="top:7px;">
+					<h3 class="mb-0">
+						Ürün Listesi
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div class="table-responsive">
+			<table class="table align-items-center" style="table-layout: fixed;">
+				<thead class="thead-light">
+					<tr id="headM">
+						<th scope='col'>Ürün Adı</th>
+						<th scope='col'>Kategori</th>
+						<th scope='col'>Sayı</th>
+						<th scope='col'></th>
+
+					</tr>
+				</thead>
+				<tbody class="list" id="urunList">
+					<tr th:each="result: ${resultList}">
+						<td th:text="${result.ad}" />
+						<td th:text="${result.kategori.ad}" />
+						<td th:text="${result.sayi}" />
+						<td>
+							<button type="button" class="btn btn-primary btn-sm"
+								th:onclick="|window.location.href='getUpdate/${result.id}'|">Güncelle</button>
+							<button type="button" class="btn btn-secondary btn-sm"
+								th:onclick="|window.location.href='delete/${result.id}'|">Sil</button>
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+			<div id="pageLinks"></div>
+		</div>
+	</div>
+</th:block>
+
+
+
+
+
+<th:block layout:fragment="script">
+	<script>
+		function search() {
+			window.location.href = "/urun/search-get?text=" + $("#search_text").val();
+		}
+	</script>
+</th:block>

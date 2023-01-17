@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+<meta charset="utf-8">
+
+
+<th:block layout:fragment="content">
+	<div class="container-fluid mainT">
+		<div class="header-body">
+
+			<span class="text-white">&nbsp;</span>
+			<form action="/urun/update" method = "post">
+
+				<div th:if="${message}">
+					<div class="alert alert-success" role="alert">
+	    				<strong>İşlem Başarılı!</strong> Ürün Güncellendi
+					</div>
+				</div>
+
+				<input type="hidden" th:field="${urun.id}" name="id">
+
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Ürün Adı</label>
+					<input type="text" th:field="${urun.ad}" class="form-control form-control-alternative" name="ad">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlSelect1">Kategori</label>
+				    <select class="form-control" th:field="${urun.kategori}" id ="kategori"  >
+    						<option th:each="kategori : ${kategoriList}" th:value="${kategori.id}" th:text="${kategori.ad}"></option>
+    				</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Ürün Sayısı</label>
+					<input type="text" th:field="${urun.sayi}" class="form-control form-control-alternative" name="sayi" id="sayi">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" type="submit">Ürün Güncelle</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</th:block>
+

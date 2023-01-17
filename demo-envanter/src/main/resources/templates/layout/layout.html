@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Java Spring Boot - Kafein Yazılım Demo Proje</title>
+<!-- Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+	rel="stylesheet">
+<!-- Icons -->
+<link th:href="@{${@environment.getProperty('staticfiles')}}+'/assets/vendor/nucleo/css/nucleo.css'" rel="stylesheet">
+<link
+	th:href="@{${@environment.getProperty('staticfiles')}}+'/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css'"
+	rel="stylesheet">
+<!-- Argon CSS -->
+<link type="text/css" th:href="@{${@environment.getProperty('staticfiles')}}+'/assets/css/argon.css?v=1.0.0'"
+	rel="stylesheet">
+<link type="text/css" th:href="@{'/assets/css/style.css?v=1.0.0'}"
+	rel="stylesheet">
+
+<link th:href = "@{'/assets/css/jquery-ui.min.css?v=1.0.0'}"
+         rel = "stylesheet">
+         
+<script th:inline="javascript">
+    /*<![CDATA[*/
+        let contextPath    = /*[[@{/}]]*/
+    /*]]>*/
+</script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.3/xlsx.full.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.3/jszip.js"></script>
+<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
+<script src="https://unpkg.com/tableexport@5.2.0/dist/js/tableexport.js"></script>
+<link rel="https://unpkg.com/tableexport@5.2.0/dist/css/tableexport.css"
+	href="styles.css">
+
+<th:block layout:fragment="pagescript"></th:block> 
+<th:block layout:fragment="pagecss"></th:block> 
+
+
+
+<script th:src="@{${@environment.getProperty('staticfiles')}}+'/assets/vendor/jquery/dist/jquery.min.js'"></script>
+<script th:src="@{${@environment.getProperty('staticfiles')}}+'/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js'"></script>
+
+<!-- Optional JS -->
+<script th:src="@{${@environment.getProperty('staticfiles')}}+'/assets/vendor/chart.js/dist/Chart.min.js'"></script>
+<script th:src="@{${@environment.getProperty('staticfiles')}}+'/assets/vendor/chart.js/dist/Chart.extension.js'"></script>
+
+<!-- Argon JS -->
+<script th:src="@{${@environment.getProperty('staticfiles')}}+'/assets/js/argon.js?v=1.0.0'"></script>
+	
+<script th:src="@{'/assets/vendor/jquery/dist/jquery-ui.min.js'}"></script>
+<script th:src="@{'/assets/vendor/sheetjs/dist/xlsx.full.min.js'}"></script>
+<script th:src="@{'/assets/js/moduls/employeeAutocomplete.js'}"></script>
+<script th:src="@{'/assets/js/moduls/unit.js'}"></script>
+<script th:src="@{'/assets/js/util/paging.js'}"></script>
+<script th:src="@{'/assets/js/util/helper.js'}"></script>
+<script th:src="@{'/assets/js/util/tableUtility.js'}"></script>
+<script th:src="@{'/assets/js/util/chartColors.js'}"></script>
+<script th:src="@{'/assets/vendor/jquery/dist/jquery.maskMoney.js'}"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+</head>
+
+
+<body>
+	<input type="hidden" id="userRoles" th:value="${session.roles}" >
+	<th:block layout:insert="layout/sidenav" />
+	<div class="main-content">
+		<th:block layout:insert="layout/topnav" />
+		<!-- Header -->
+
+		<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+			<th:block layout:fragment="cardstats" />
+									<th:block layout:fragment="search" />
+								
+		</div>
+		<div class="container-fluid mt--7">
+			<div class="row">
+				<div class="col">
+					<div class="card shadow">
+						<!-- Modal kullanırken body için <th:block layout:fragment="modalcontent"> tagı açılmalı ve doldurulmalı -->
+						<th:block layout:insert="layout/modal" />
+						<th:block layout:fragment="content" />
+					</div>
+				</div>
+			</div>
+
+			<th:block layout:insert="layout/footer" />
+		</div>
+		<script>
+			$( document ).ajaxStart(function() {
+				spinners=$('.spin')
+				for(i=0;i<spinners.length;i++){
+					$(spinners[i]).html($(spinners[i]).text() + '<i style="margin-left:5px" class="fa fa-spinner fa-spin"></i>');
+					$(spinners[i]).addClass('disabled');
+				}
+				
+			});
+			$( document ).ajaxStop(function() {
+				spinners=$('.spin')
+				for(i=0;i<spinners.length;i++){
+					$(spinners[i]).html($(spinners[i]).text());
+					$(spinners[i]).removeClass('disabled');
+				}
+			});
+		</script>
+	
+		<th:block layout:fragment="script"></th:block>
+		
+</body>
+
+</html>
